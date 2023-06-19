@@ -9,6 +9,8 @@ This is an unofficial fork of another unofficial fork [wiringPi](https://github.
 
 ## Source Installation
 
+[![Build Status wiringpi C/C++ CI](https://github.com/mbhangui/wiringPi/actions/workflows/wiringpi-c-cpp.yml/badge.svg)](https://github.com/mbhangui/wiringPi/actions/workflows/wiringpi-c-cpp.yml)
+
 ```
 $ cd /usr/local/src
 $ git clone --no-tags --no-recurse-submodules --depth=1 https://github.com/mbhangui/wiringPi
