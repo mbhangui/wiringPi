@@ -35,4 +35,4 @@ pins/pins.aux
 pins/pins.dvi
 pins/pins.log
 stamp-h1
-wiringpi.spec
+wiringPi.spec

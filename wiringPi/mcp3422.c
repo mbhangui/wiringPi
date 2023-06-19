@@ -40,14 +40,16 @@
 /*
  * waitForConversion:
  *	Common code to wait for the ADC to finish conversion
- *********************************************************************************
  */
 
 void waitForConversion (int fd, unsigned char *buffer, int n)
 {
   for (;;)
   {
-    read (fd, buffer, n) ;
+    if (read (fd, buffer, n) == -1) {
+		perror("waitForConversion: read: ");
+		_exit(111);
+	}
     if ((buffer [n-1] & 0x80) == 0)
       break ;
     delay (1) ;
@@ -56,8 +58,7 @@ void waitForConversion (int fd, unsigned char *buffer, int n)
 
 /*
  * myAnalogRead:
- *	Read a channel from the device
- *********************************************************************************
+ * Read a channel from the device
  */
 
 int myAnalogRead (struct wiringPiNodeStruct *node, int chan)
@@ -67,7 +68,7 @@ int myAnalogRead (struct wiringPiNodeStruct *node, int chan)
   int value = 0 ;
   int realChan = (chan & 3) - node->pinBase ;
 
-// One-shot mode, trigger plus the other configs.
+	/* One-shot mode, trigger plus the other configs.*/
 
   config = 0x80 | (realChan << 5) | (node->data0 << 2) | (node->data1) ;
   

@@ -47,7 +47,7 @@
 
 static int myAnalogRead (struct wiringPiNodeStruct *node, int pin)
 {
-  int *ptr   = (int *)node->data0 ;
+  int *ptr   = (int *) node->data0 ;
   int  myPin = pin - node->pinBase ;
 
   return *(ptr + myPin) ;

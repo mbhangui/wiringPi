@@ -155,7 +155,8 @@ void serialClose (const int fd)
 
 void serialPutchar (const int fd, const unsigned char c)
 {
-  write (fd, &c, 1) ;
+  if (write (fd, &c, 1) != 1)
+	perror("serialPutchar: write: ");
 }
 
 
@@ -167,7 +168,11 @@ void serialPutchar (const int fd, const unsigned char c)
 
 void serialPuts (const int fd, const char *s)
 {
-  write (fd, s, strlen (s)) ;
+	int i;
+
+	i = strlen(s);
+  if (write (fd, s, i) != i)
+	perror("serialPutchar: write: ");
 }
 
 /*

@@ -3,3 +3,4 @@ Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
 - 19/06/2023
 01. First Debian Release
 02. use autoconf to generate Makefiles
+03. Removed compiler warnings
