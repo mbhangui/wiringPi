@@ -16,6 +16,8 @@ pins.dvi:	pins.tex
 pdf:	pins.dvi
 	$Q dvipdf pins.dvi
 
+install:
+	echo done
 
 .PHONY:	clean
 clean:

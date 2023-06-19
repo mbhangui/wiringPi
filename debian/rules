@@ -1,49 +1,83 @@
 #!/usr/bin/make -f
 
-.PHONY: build
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
 
-VERSION:=$(shell cat VERSION)
-export VERSION
+# This is the debhelper compatibility version to use.
+# export DH_COMPAT=4
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
 
-soname:=$(shell echo $${VERSION%%.*})
-WIRINGPI_SONAME_SUFFIX:=.$(soname)
-export soname
-export WIRINGPI_SONAME_SUFFIX
+prefix=/usr
+mandir=$(prefix)/share/man
 
-build:
-	dh $@
+arch=$(shell uname -m)
+# check https://wiki.debian.org/Multiarch/Implementation#Dynamic_debian.2F.2A_files
+libd=$(shell if [ -d $(prefix)/lib/$(arch)-linux-gnu ] ; then echo lib/$(arch)-linux-gnu; else echo lib;fi)
+cp=/bin/cp
+rm=/bin/rm
 
-override_dh_auto_configure:
+DESTDIR=$(CURDIR)/debian/wiringpi.tmp
 
-override_dh_prep:
-	dh_prep -Xdebian/tmp
+build: build-stamp
+build-stamp:
+	dh_testdir
+	#
+	# run configure script
+	#
+	./configure $(shell dpkg-buildflags --export=cmdline) \
+		--prefix=$(prefix) --libdir=$(prefix)/$(libd) \
+		--with-pkgconfigdir=/usr/lib/pkgconfig --mandir=$(mandir)
 
-dirs:
-	dh_installdirs -A
-	mkdir debian/tmp
-	set -e; for p in `dh_listpackages`; do \
-		(cd debian/$$p; find -type d) | \
-		(cd debian/tmp; xargs mkdir -p) \
-	done
+	$(MAKE) -s DESTDIR=$(DESTDIR)
+	${rm} -rf $(DESTDIR)$(prefix)/$(libd)/*.la
+	touch build-stamp
 
-override_dh_clean:
+clean:
+	rm -f build-stamp configure-stamp
+	${rm} -rf $(DESTDIR) .deps
+	dh_testdir
+	dh_testroot
 	dh_clean
-	WIRINGPI_SUDO= bash -xe ./build clean
+	$(MAKE) clean || true; $(MAKE) distclean || true
+	${rm} -f build-stamp
 
-override_dh_auto_build: dirs
-	V=1 LDCONFIG=: WIRINGPI_SUDO= WIRINGPI_SUID=0 \
-	    DESTDIR=`pwd`/debian/tmp/usr \
-	    PREFIX= WIRINGPI_SUDO= \
-	    bash -xe ./build
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep || dh_clean -k
+	dh_installdirs
+	$(MAKE) -s install DESTDIR=$(DESTDIR)
 
-override_dh_auto_install:
-	dh_install
-	set -ex; for l in libwiringPi libwiringPiDev; do \
-		ln -sf $$l.so.$${VERSION} \
-			debian/libwiringpi$$soname/usr/lib/$$l.so.$$soname; \
-		ln -sf $$l.so.$${VERSION} \
-			debian/libwiringpi-dev/usr/lib/$$l.so; \
-	done
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	find $(DESTDIR)$(mandir) -name '*'.? -type f -exec gzip -q {} \;
+	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringPi.install
+	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringPiDev.install
+	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringPi-dev.install
+	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringPiDev-dev.install
+	dh_install --sourcedir=$(DESTDIR) -pwiringpi
+	dh_install --sourcedir=$(DESTDIR) -plibwiringpi
+	dh_install --sourcedir=$(DESTDIR) -plibwiringpi-dev
+	dh_install --sourcedir=$(DESTDIR) -plibwiringpidev
+	dh_install --sourcedir=$(DESTDIR) -plibwiringpidev-dev
+	dh_installchangelogs
+	dh_installcron
+	dh_installdocs
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_makeshlibs -V
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
 
-%:
-	dh $@
+# Build architecture-dependent files here. 
+binary-arch: build install
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure

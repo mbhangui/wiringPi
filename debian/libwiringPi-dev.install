@@ -1,0 +1,3 @@
+usr/include/wiringPi /usr/include
+usr/@libd@/libwiringPi.a /usr/@libd@
+usr/@libd@/libwiringPi.so  /usr/@libd@

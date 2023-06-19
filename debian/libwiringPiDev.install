@@ -1,0 +1,2 @@
+usr/lib/pkgconfig/libwiringPiDev.pc /usr/lib/pkgconfig
+usr/@libd@/libwiringPiDev.so.* /usr/@libd@

@@ -1,0 +1,188 @@
+%if %{defined _project}
+# define if building on openSUSE build service
+%global build_on_obs       1
+%global reconfigure_mode   0
+%else
+%define _project           local
+%global build_on_obs       0
+%global reconfigure_mode   0
+%global _hardened_build    1
+%endif
+
+%if %{defined nodebug}
+%global debug_package      %{nil}
+%endif
+%global _prefix            /usr
+%global mandir             /usr/share/man
+%global _pkg_config_path   /usr/%{_lib}/pkgconfig
+
+%if %build_on_obs == 1
+%global packager           Manvendra Bhangui <@email@>
+%endif
+
+%define see_base           For a description of IndiMail visit https://git.drogon.net/?p=wiringPi
+
+Name:    wiringPi
+Version: @version@
+Release: @release@%{?dist}
+Summary: Utility to access/maniplate Raspberry Pi GPIO pins
+License: LGPL-3.0
+URL:     https://github.com/mbhangui/wiringpi
+Source0: %{name}-%{version}.tar.gz
+BuildRequires: gcc gcc-c++ make autoconf automake libtool pkgconfig
+BuildRequires: glibc glibc-devel binutils
+AutoReqProv: Yes
+
+%description
+WiringPi consists of libraries written in C to access Raspberry PI GPIO
+pins. It also includes a utility named gpio to access and manipulate the
+GPIO pins.
+
+%{see_base}
+
+%package -n libwiringpi-devel
+Summary: Development header files and libraries for libwiringpi
+%if %{undefined suse_version} && %{undefined sles_version}
+Group: System Environment/Libraries
+%else
+Group: System/Libraries
+%endif
+
+%description -n libwiringpi-devel
+The wiringpi libraries and headers provide functions to access GPIO pins
+on a Raspberry Pi from C and C++ and BASIC programs as well as from the
+command-line using gpio command line utility
+
+This package contains the static library libwiringpi.a and headers for
+libwiringpi necessary to develop WiringPi applications.
+
+%{see_base}
+
+%package -n libwiringpi
+Summary: Library for accessing GPIO on Raspberry Pi
+Group: Development/Libraries/Other
+
+%description -n libwiringpi
+The wiringpi libraries and headers provide functions to access GPIO pins
+on a Raspberry Pi from C and C++ and BASIC programs as well as from the
+command-line using gpio command line utility
+
+This package contains the shared libraries (*.so*) which certain languages
+and applications need to dynamically load and use libwiringpi.
+
+%{see_base}
+
+%package -n libwiringpidev-devel
+Summary: Development header files and libraries for libwiringpidev
+%if %{undefined suse_version} && %{undefined sles_version}
+Group: System Environment/Libraries
+%else
+Group: System/Libraries
+%endif
+
+%description -n libwiringpidev-devel
+The devLib is a set of library routines implemented using wiringpi to give
+you easy access to some popular peripherals. Devices supported include
+character LCD displays (based on the Hitachi HD44780U chips), and graphical
+ones – e.g. the common 128×64 pixel displays with the generic 12864H driver
+chip. The DS1302 RTC clock chip, sensors based on the Maxdetect chips (e.g.
+RHT003) the Gertboard and PiFace interface boards and so on.
+
+This package contains the static library libwiringpidev.a and headers for
+libwiringpidev necessary to develop WiringPi applications.
+
+%package -n libwiringpidev
+Summary: Library for accessing Peripherals on Raspberry Pi
+Group: Development/Libraries/Other
+
+%description -n libwiringpidev
+The devLib is a set of library routines implemented using wiringpi to give
+you easy access to some popular peripherals. Devices supported include
+character LCD displays (based on the Hitachi HD44780U chips), and graphical
+ones – e.g. the common 128×64 pixel displays with the generic 12864H driver
+chip. The DS1302 RTC clock chip, sensors based on the Maxdetect chips (e.g.
+RHT003) the Gertboard and PiFace interface boards and so on.
+
+This package contains the shared libraries (*.so*) which certain languages
+and applications need to dynamically load and use libwiringpidev.
+
+%{see_base}
+
+%prep
+%setup -qn wiringPi-%{version}
+
+%build
+%configure --prefix=/usr --libdir=%{_libdir} --with-pkgconfigdir=%{_pkg_config_path}
+%{__make} %{?_smp_mflags}
+
+%install
+%if %{defined nodebug}
+  %{__make} -s %{?_smp_mflags} DESTDIR=%{buildroot} install-strip
+%else
+  %{__make} -s %{?_smp_mflags} DESTDIR=%{buildroot} install
+%endif
+  for i in %{name} libwiringpi libwiringpi-devel libwiringpidev libwiringpidev-devel
+  do
+    %{__mkdir_p} %{buildroot}%{_prefix}/share/doc/$i
+    install -p -m 0644 COPYING.LESSER %{buildroot}%{_prefix}/share/doc/$i
+  done
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
+%clean
+rm -rf %{buildroot}
+
+%files
+%if %build_on_obs == 0
+%license %attr(0644,root,root)       %{_prefix}/share/doc/%{name}/COPYING.LESSER
+%else
+%attr(0644,root,root)                %{_prefix}/share/doc/%{name}/COPYING.LESSER
+%endif
+%defattr(-,root,root,-)
+%attr(4755,root,root)                %{_prefix}/bin/gpio
+
+%doc /usr/share/man/man1/*
+%doc pins/pins.pdf
+
+%files -n libwiringpi-devel
+%dir %attr(755,root,root)            %{_prefix}/include/wiringPi
+%attr(0644,root,root)                %{_prefix}/include/wiringPi/*
+%{_libdir}/libwiringPi.so
+%{_libdir}/libwiringPi.a
+%{_pkg_config_path}/libwiringPi.pc
+%if %build_on_obs == 0
+%license %attr(0644,root,root)       %{_prefix}/share/doc/libwiringpi-devel/COPYING.LESSER
+%else
+%attr(0644,root,root)                %{_prefix}/share/doc/libwiringpi-devel/COPYING.LESSER
+%endif
+
+%files -n libwiringpi
+%{_libdir}/libwiringPi.so.*
+%if %build_on_obs == 0
+%license %attr(0644,root,root)       %{_prefix}/share/doc/libwiringpi/COPYING.LESSER
+%else
+%attr(0644,root,root)                %{_prefix}/share/doc/libwiringpi/COPYING.LESSER
+%endif
+
+%files -n libwiringpidev-devel
+%dir %attr(755,root,root)            %{_prefix}/include/wiringPiDev
+%attr(0644,root,root)                %{_prefix}/include/wiringPiDev/*
+%{_libdir}/libwiringPiDev.so
+%{_libdir}/libwiringPiDev.a
+%if %build_on_obs == 0
+%license %attr(0644,root,root)       %{_prefix}/share/doc/libwiringpidev-devel/COPYING.LESSER
+%else
+%attr(0644,root,root)                %{_prefix}/share/doc/libwiringpidev-devel/COPYING.LESSER
+%endif
+%{_pkg_config_path}/libwiringPiDev.pc
+
+%files -n libwiringpidev
+%if %build_on_obs == 0
+%license %attr(0644,root,root)       %{_prefix}/share/doc/libwiringpidev/COPYING.LESSER
+%else
+%attr(0644,root,root)                %{_prefix}/share/doc/libwiringpidev/COPYING.LESSER
+%endif
+%{_libdir}/libwiringPiDev.so.*
+
+%changelog

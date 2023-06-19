@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@prefix@
+libdir=@libdir@
+includedir=@prefix@/include/wiringPiDev
+
+Name: @PACKAGE@
+Description: @PACKAGE_NAME@ - Development header files and libraries
+Version: @VERSION@
+Cflags: @CFLAGS@ 
+Libs: -L@libdir@ -lwiringPiDev
