@@ -5,3 +5,4 @@ Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
 02. use autoconf to generate Makefiles
 03. Removed compiler warnings
 04. added repository for debian/rpm builds on open build service
+05. Bumped Release to 3.0 and auto-generate version.h in configure script

@@ -1,0 +1,4 @@
+#define VERSION "@version@"
+#define VERSION_MAJOR @version_major@
+#define VERSION_MINOR @version_minor@
+

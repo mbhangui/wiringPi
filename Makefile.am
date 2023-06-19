@@ -4,7 +4,6 @@ ACLOCAL_AMFLAGS=-I m4
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libwiringPi.pc libwiringPiDev.pc
 noinst_DATA = wiringpi.spec
-BUILT_SOURCES = version.h
 
 SUBDIRS=devLib wiringPi gpio
 
@@ -23,10 +22,3 @@ conf-release conf-email
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 wiringpi.changes: doc/ChangeLog conf-version conf-release conf-email
 	./catChangeLog --changes doc/ChangeLog > $@
-
-version.h: conf-version
-	( \
-	echo "#define VERSION \"$(VERSION)\""; \
-	echo "#define VERSION_MAJOR `echo $(VERSION)|cut -d. -f1`"; \
-	echo "#define VERSION_MINOR `echo $(VERSION)|cut -d. -f2`"; \
-	) > version.h
