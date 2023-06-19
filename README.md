@@ -27,17 +27,17 @@ This is done by running the create\_rpm / create\_debian scripts. (Here `version
 $ pwd
 /usr/local/src/wiringPi
 $ ./create_rpm
-$ ls -l $HOME/rpmbuild/RPMS/x86_64/wiringpi\*
--rw-r--r--. 1 mbhangui mbhangui 42307 Jun 19 17:41 /home/mbhangui/rpmbuild/RPMS/x86_64/libwiringpi-3.0-1.1.fc38.x86_64.rpm
--rw-r--r--. 1 mbhangui mbhangui 83713 Jun 19 17:40 /home/mbhangui/rpmbuild/RPMS/x86_64/libwiringpi-debuginfo-3.0-1.1.fc38.x86_64.rpm
--rw-r--r--. 1 mbhangui mbhangui 25834 Jun 19 17:41 /home/mbhangui/rpmbuild/RPMS/x86_64/libwiringpidev-3.0-1.1.fc38.x86_64.rpm
--rw-r--r--. 1 mbhangui mbhangui 37499 Jun 19 17:40 /home/mbhangui/rpmbuild/RPMS/x86_64/libwiringpidev-debuginfo-3.0-1.1.fc38.x86_64.rpm
--rw-r--r--. 1 mbhangui mbhangui 31361 Jun 19 17:41 /home/mbhangui/rpmbuild/RPMS/x86_64/libwiringpidev-devel-3.0-1.1.fc38.x86_64.rpm
--rw-r--r--. 1 mbhangui mbhangui 62002 Jun 19 17:41 /home/mbhangui/rpmbuild/RPMS/x86_64/libwiringpi-devel-3.0-1.1.fc38.x86_64.rpm
--rw-r--r--. 1 mbhangui mbhangui 36584 Jun 19 17:41 /home/mbhangui/rpmbuild/RPMS/x86_64/wiringpi-3.0-1.1.fc38.x86_64.rpm
--rw-r--r--. 1 mbhangui mbhangui 40876 Jun 19 17:40 /home/mbhangui/rpmbuild/RPMS/x86_64/wiringpi-debuginfo-3.0-1.1.fc38.x86_64.rpm
--rw-r--r--. 1 mbhangui mbhangui 80848 Jun 19 17:40 /home/mbhangui/rpmbuild/RPMS/x86_64/wiringpi-debugsource-3.0-1.1.fc38.x86_64.rpm
--rw-rw-r--. 1 mbhangui mbhangui  290567 Feb  8 09:05 wiringpi-3.0-1.1.fc38.x86_64.rpm
+$ ls -l $HOME/rpmbuild/RPMS/x86_64/*wiringpi*
+-rw-r--r--. 1 pi pi 42307 Jun 19 17:41 /home/pi/rpmbuild/RPMS/x86_64/libwiringpi-3.0-1.1.fc38.x86_64.rpm
+-rw-r--r--. 1 pi pi 83713 Jun 19 17:40 /home/pi/rpmbuild/RPMS/x86_64/libwiringpi-debuginfo-3.0-1.1.fc38.x86_64.rpm
+-rw-r--r--. 1 pi pi 25834 Jun 19 17:41 /home/pi/rpmbuild/RPMS/x86_64/libwiringpidev-3.0-1.1.fc38.x86_64.rpm
+-rw-r--r--. 1 pi pi 37499 Jun 19 17:40 /home/pi/rpmbuild/RPMS/x86_64/libwiringpidev-debuginfo-3.0-1.1.fc38.x86_64.rpm
+-rw-r--r--. 1 pi pi 31361 Jun 19 17:41 /home/pi/rpmbuild/RPMS/x86_64/libwiringpidev-devel-3.0-1.1.fc38.x86_64.rpm
+-rw-r--r--. 1 pi pi 62002 Jun 19 17:41 /home/pi/rpmbuild/RPMS/x86_64/libwiringpi-devel-3.0-1.1.fc38.x86_64.rpm
+-rw-r--r--. 1 pi pi 36584 Jun 19 17:41 /home/pi/rpmbuild/RPMS/x86_64/wiringpi-3.0-1.1.fc38.x86_64.rpm
+-rw-r--r--. 1 pi pi 40876 Jun 19 17:40 /home/pi/rpmbuild/RPMS/x86_64/wiringpi-debuginfo-3.0-1.1.fc38.x86_64.rpm
+-rw-r--r--. 1 pi pi 80848 Jun 19 17:40 /home/pi/rpmbuild/RPMS/x86_64/wiringpi-debugsource-3.0-1.1.fc38.x86_64.rpm
+-rw-rw-r--. 1 pi pi  290567 Feb  8 09:05 wiringpi-3.0-1.1.fc38.x86_64.rpm
 ```
 
 ### Create debian package
@@ -46,10 +46,17 @@ $ ls -l $HOME/rpmbuild/RPMS/x86_64/wiringpi\*
 $ pwd
 /usr/local/src/wiringPi
 $ ./create_debian
-$ ls -l $HOME/stage/mpdev*
--rw-r--r--  1 mbhangui mbhangui  558 Jul  2 19:30 mpdev.1-1.1_amd64.buildinfo
--rw-r--r--  1 mbhangui mbhangui  981 Jul  2 19:30 mpdev.1-1.1_amd64.changes
--rw-r--r--  1 mbhangui mbhangui 2916 Jul  2 19:30 mpdev.1-1.1_amd64.deb
+$ ls -l $HOME/stage/*wiring*
+total 44
+drwxr-xr-x  3 pi pi 4096 Jun 19 18:35 .
+drwxr-xr-x 24 pi pi 4096 Jun 19 18:24 ..
+-rw-r--r--  1 pi pi 2272 Jun 19 18:35 libwiringpi_3.0-1.1_arm64.deb
+-rw-r--r--  1 pi pi 2296 Jun 19 18:35 libwiringpi-dev_3.0-1.1_arm64.deb
+-rw-r--r--  1 pi pi 2468 Jun 19 18:35 libwiringpidev_3.0-1.1_arm64.deb
+-rw-r--r--  1 pi pi 2484 Jun 19 18:35 libwiringpidev-dev_3.0-1.1_arm64.deb
+-rw-r--r--  1 pi pi 6059 Jun 19 18:35 wiringpi_3.0-1.1_arm64.buildinfo
+-rw-r--r--  1 pi pi 2552 Jun 19 18:35 wiringpi_3.0-1.1_arm64.changes
+-rw-r--r--  1 pi pi 2344 Jun 19 18:35 wiringpi_3.0-1.1_arm64.deb
 ```
 
 ## Prebuilt Binaries
@@ -64,7 +71,7 @@ Prebuilt binaries using openSUSE Build Service are available for wiringPi for
 
 Use the below url for installation
 
-https://software.opensuse.org//download.html?project=home%3Ambhangui%3Araspi&package=wiringPi
+[download](https://software.opensuse.org//download.html?project=home%3Ambhangui%3Araspi&package=wiringPi)
 
 # Support
 
