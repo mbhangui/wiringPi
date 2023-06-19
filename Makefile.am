@@ -3,7 +3,7 @@ ACLOCAL_AMFLAGS=-I m4
 
 pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libwiringPi.pc libwiringPiDev.pc
-noinst_DATA = wiringPi.spec
+noinst_DATA = wiringpi.spec
 
 SUBDIRS=devLib wiringPi gpio
 
@@ -17,7 +17,7 @@ edit = sed \
 	-e 's}@VERSION\@}$(VERSION)}g' \
 	-e 's}@prefix\@}$(prefix)}g'
 
-wiringPi.spec: wiringPi.spec.in catChangeLog doc/ChangeLog conf-version \
+wiringpi.spec: wiringpi.spec.in catChangeLog doc/ChangeLog conf-version \
 conf-release conf-email
 	(cat $@.in;./catChangeLog) | $(edit) > $@
 wiringpi.changes: doc/ChangeLog conf-version conf-release conf-email

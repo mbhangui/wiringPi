@@ -20,14 +20,14 @@
 %global packager           Manvendra Bhangui <@email@>
 %endif
 
-%define see_base           For a description of IndiMail visit https://git.drogon.net/?p=wiringPi
+%define see_base           For a description of wiringpi visit https://github.com/mbhangui/wiringPi
 
-Name:    wiringPi
+Name:    wiringpi
 Version: @version@
 Release: @release@%{?dist}
 Summary: Utility to access/maniplate Raspberry Pi GPIO pins
 License: LGPLv3+
-URL:     https://github.com/mbhangui/wiringpi
+URL:     https://github.com/mbhangui/wiringPi
 Source0: %{name}-%{version}.tar.gz
 BuildRequires: gcc gcc-c++ make autoconf automake libtool pkgconfig
 BuildRequires: glibc glibc-devel binutils
@@ -109,7 +109,7 @@ and applications need to dynamically load and use libwiringpidev.
 %{see_base}
 
 %prep
-%setup -qn wiringPi-%{version}
+%setup -qn wiringpi-%{version}
 
 %build
 %configure --prefix=/usr --libdir=%{_libdir} --with-pkgconfigdir=%{_pkg_config_path}
@@ -141,6 +141,7 @@ done
 %defattr(-,root,root,-)
 %attr(4755,root,root)                %{_prefix}/bin/gpio
 
+%docdir %{_prefix}/share/doc/%{name}
 %doc /usr/share/man/man1/*
 %doc pins/pins.pdf
 
@@ -155,6 +156,7 @@ done
 %else
 %attr(0644,root,root)                %{_prefix}/share/doc/libwiringpi-devel/COPYING.LESSER
 %endif
+%docdir %{_prefix}/share/doc/libwiringpi-devel
 
 %files -n libwiringpi
 %{_libdir}/libwiringPi.so.*
@@ -163,6 +165,7 @@ done
 %else
 %attr(0644,root,root)                %{_prefix}/share/doc/libwiringpi/COPYING.LESSER
 %endif
+%docdir %{_prefix}/share/doc/libwiringpi
 
 %files -n libwiringpidev-devel
 %dir %attr(755,root,root)            %{_prefix}/include/wiringPiDev
@@ -175,6 +178,7 @@ done
 %attr(0644,root,root)                %{_prefix}/share/doc/libwiringpidev-devel/COPYING.LESSER
 %endif
 %{_pkg_config_path}/libwiringPiDev.pc
+%docdir %{_prefix}/share/doc/libwiringpidev-devel
 
 %files -n libwiringpidev
 %if %build_on_obs == 0
@@ -183,5 +187,6 @@ done
 %attr(0644,root,root)                %{_prefix}/share/doc/libwiringpidev/COPYING.LESSER
 %endif
 %{_libdir}/libwiringPiDev.so.*
+%docdir %{_prefix}/share/doc/libwiringpidev
 
 %changelog

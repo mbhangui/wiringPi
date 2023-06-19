@@ -1,11 +1,10 @@
 Source: wiringpi
-Package: wiringpi
 Section: libs
 Priority: optional
 Maintainer: "wiringpi" <wiringpi@indimail.org>
 Standards-Version: 4.5.0
 Build-Depends: debhelper (>= 9), binutils, coreutils, pkg-config
-Homepage: https://github.com/mbhangui/wiringpi
+Homepage: https://github.com/mbhangui/wiringPi
 
 Package: wiringpi
 Section: misc
@@ -22,8 +21,8 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: The wiringpi libraries, headers and gpio command
- allow GPIO access on a Raspberry Pi from C and C++
- programs as well as from the command-line gpio utility.
+ Libraries to allow GPIO access on a Raspberry Pi from C and C++
+ and BASIC programs as well as from the command-line
  .
  This package contains the shared library libwiringpi linked against
  glibc.
@@ -48,8 +47,8 @@ Section: libdevel
 Architecture: any
 Depends: libwiringpi (= ${binary:Version}), ${misc:Depends}
 Description: The wiringpi libraries, headers and gpio command
- allow GPIO access on a Raspberry Pi from C and C++
- programs as well as from the command-line gpio utility
+ Libraries to allow GPIO access on a Raspberry Pi from C and C++
+ and BASIC programs as well as from the command-line
  .
  This package contains the static library libwiringpi.a and headers for
  libwiringpi.

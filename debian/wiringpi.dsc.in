@@ -1,12 +1,12 @@
 Format: 3.0 (quilt)
-Source: wiringPi
+Source: wiringpi
 Binary: libwiringpi, libwiringpi-dev, libwiringpidev, libwiringpidev-dev
 Architecture: any
 Version: @version@-@release@
 Maintainer: @email@
-Homepage: https://github.com/mbhangui/wiringpi
+Homepage: https://github.com/mbhangui/wiringPi
 Debtransform-Release: 1
 Debtransform-Files-Tar: debian.tar.gz
-Debtransform-Tar: wiringPi-@version@.tar.gz
+Debtransform-Tar: wiringpi-@version@.tar.gz
 Standards-Version: 3.9.1
 Build-Depends: cdbs, debhelper (>= 9), gcc, binutils, coreutils, automake, autoconf, m4, gawk, pkg-config

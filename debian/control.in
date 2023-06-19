@@ -1,11 +1,10 @@
 Source: wiringpi
-Package: wiringpi
 Section: libs
 Priority: optional
 Maintainer: @email@
 Standards-Version: 4.5.0
 Build-Depends: debhelper (>= 9), binutils, coreutils, pkg-config
-Homepage: https://github.com/mbhangui/wiringpi
+Homepage: https://github.com/mbhangui/wiringPi
 
 Package: wiringpi
 Section: misc

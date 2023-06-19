@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([wiringpi], [2.70], [wiringpi@indimail.org])
+AC_INIT([wiringPi],[m4_normalize(m4_include(conf-version))],[m4_normalize(m4_include(conf-email))],[wiringpi],[https://github.com/mbhangui/wiringPi])
 AM_INIT_AUTOMAKE([foreign subdir-objects silent-rules no-dist])
 AC_CONFIG_SRCDIR([version.h])
 AC_CONFIG_HEADERS([config.h])
@@ -29,9 +29,9 @@ fi
 AC_SUBST(prefix)
 AC_SUBST(libdir)
 AC_SUBST(pkgconfigdir)
-DEVLIBVER=2
+DEVLIBVER=3
 AC_SUBST(DEVLIBVER)
-WIRINGPILIBVER=2
+WIRINGPILIBVER=3
 AC_SUBST(WIRINGPILIBVER)
 
 AC_CONFIG_FILES([libwiringPi.pc:libwiringPi.pc.in],[], [])
