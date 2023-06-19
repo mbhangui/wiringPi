@@ -1,0 +1,35 @@
+name: wiringpi C/C++ CI
+
+on:
+  push:
+    paths:
+      - '**'
+      - .github/workflows/wiringpi-c-cpp.yml
+      - '!**/debian/*'
+      - '!**/wiringpi.spec.in'
+      - '!**/obs/*'
+      - '!**/doc/*'
+      - '!**.md'
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout_main
+      uses: actions/checkout@v2
+      with:
+        path: main
+
+    - name: build_wiringpi
+      run: |
+        cd main; ./default.configure; make
+        make clean; /bin/rm -rf .git autom4te.cache
+        make -C debian;make wiringpi.spec
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: wiringpi
+        path: ${{ github.workspace }}
