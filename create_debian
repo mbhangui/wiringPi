@@ -4,15 +4,15 @@ if [ ! -f /etc/debian_version ] ; then
 	exit 1
 fi
 make -s -C debian
-wiringPi_version=$(cat conf-version)
+wiringpi_version=$(cat conf-version)
 echo "Cleaning Stage"
-/bin/rm -rf $HOME/stage/WiringPi
+/bin/rm -rf $HOME/stage/wiringpi
 echo "Copying Stage"
-mkdir -p    $HOME/stage/WiringPi-$wiringPi_Version
-cp -rp .    $HOME/stage/WiringPi-$wiringPi_Version
-cd          $HOME/stage/WiringPi-$wiringPi_Version
+mkdir -p    $HOME/stage/wiringpi-$wiringpi_version
+cp -rp .    $HOME/stage/wiringpi-$wiringpi_version
+cd          $HOME/stage/wiringpi-$wiringpi_version
 dpkg-buildpackage -tc -b
 if [ $? -eq 0 ] ; then
-	/bin/rm -rf $HOME/stage/WiringPi-$wiringPi_Version
+	/bin/rm -rf $HOME/stage/wiringpi-$wiringpi_version
 	ls -lt $HOME/stage
 fi
