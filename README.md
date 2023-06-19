@@ -1,5 +1,7 @@
 # WiringPi
 
+[![wiringpi C/C++ CI](https://github.com/mbhangui/wiringPi/actions/workflows/wiringpi-c-cpp.yml/badge.svg)](https://github.com/mbhangui/wiringPi/actions/workflows/wiringpi-c-cpp.yml)
+
 This is an unofficial fork of another unofficial fork [wiringPi](https://github.com/WiringPi/WiringPi) of the original [wiringPi](http://wiringpi.com/).
 
   * The last "official" source release can be found at the [`final_source_2.50`](https://github.com/WiringPi/WiringPi/tree/final_official_2.50) tag.
@@ -8,8 +10,6 @@ This is an unofficial fork of another unofficial fork [wiringPi](https://github.
 # Installation
 
 ## Source Installation
-
-[![Build Status wiringpi C/C++ CI](https://github.com/mbhangui/wiringPi/actions/workflows/wiringpi-c-cpp.yml/badge.svg)](https://github.com/mbhangui/wiringPi/actions/workflows/wiringpi-c-cpp.yml)
 
 ```
 $ cd /usr/local/src
@@ -77,4 +77,4 @@ Use the below url for installation
 
 # Support
 
-Please do not email Gordon if you have issues, he will not be able to help. Feel free to create an [issue](https://github.com/mbhangui/wiringPi/issues/new/choose).
+Please do not email Gordon if you have issues, he will not be able to help. Feel free to create an [issue](https://github.com/mbhangui/wiringPi/issues/new/choose) on github instead.
