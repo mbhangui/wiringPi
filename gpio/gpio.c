@@ -85,6 +85,7 @@ char *usage = "Usage: gpio -v\n"
 	      "       gpio wb <value>\n"
 	      "       gpio usbp high/low\n"
 	      "       gpio gbr <channel>\n"
+	      "       gpio clock <pin> <freq>\n"
 	      "       gpio gbw <channel> <value>" ;	// No trailing newline needed here.
 
 
@@ -528,6 +529,8 @@ void doExport (int argc, char *argv [])
   sprintf (fName, "/sys/class/gpio/gpio%d/edge", pin) ;
   changeOwner (argv [0], fName) ;
 
+  sprintf (fName, "/sys/class/gpio/gpio%d/active_low", pin) ;
+  changeOwner (argv [0], fName) ;
 }
 
 
@@ -1168,7 +1171,7 @@ void doClock (int argc, char *argv [])
 
   freq = atoi (argv [3]) ;
 
-  gpioClockSet (pin, freq) ;
+  printf ("Actual frequency: %d\n", gpioClockSet (pin, freq)) ;
 }
 
 
@@ -1436,6 +1439,7 @@ int main (int argc, char *argv [])
 
   else if (strcasecmp (argv [1], "-p") == 0)
   {
+    wiringPiSetupSys () ;
     piFaceSetup (200) ;
 
     for (i = 2 ; i < argc ; ++i)

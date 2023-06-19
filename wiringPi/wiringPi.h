@@ -235,7 +235,7 @@ extern          void pwmToneWrite        (int pin, int freq) ;
 extern          void pwmSetMode          (int mode) ;
 extern          void pwmSetRange         (unsigned int range) ;
 extern          void pwmSetClock         (int divisor) ;
-extern          void gpioClockSet        (int pin, int freq) ;
+extern          int  gpioClockSet        (int pin, int freq) ;
 extern unsigned int  digitalReadByte     (void) ;
 extern unsigned int  digitalReadByte2    (void) ;
 extern          void digitalWriteByte    (int value) ;
