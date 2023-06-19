@@ -3,7 +3,7 @@
 This is an unofficial fork of another unofficial fork [wiringPi](https://github.com/WiringPi/WiringPi) of the original [wiringPi](http://wiringpi.com/).
 
   * The last "official" source release can be found at the [`final_source_2.50`](https://github.com/WiringPi/WiringPi/tree/final_official_2.50) tag.
-  * Debian builds of this fork is available using [Open Build Service](https://software.opensuse.org//download.html?project=home%3Ambhangui%3Araspi&package=wiringPi)
+  * Debian/Ubuntu builds of this fork is available using [Open Build Service](https://software.opensuse.org//download.html?project=home%3Ambhangui%3Araspi&package=wiringPi)
 
 # Installation
 
@@ -65,9 +65,9 @@ drwxr-xr-x 24 pi pi 4096 Jun 19 18:24 ..
 
 Prebuilt binaries using openSUSE Build Service are available for wiringPi for
 
-* Debian (including ARM images for Debian 10 which work (and tested) for RaspberryPI (model 2,3 & 4))
-* Raspbian 10 and 11 for RaspberryPI (ARM images)
-* Fedora (aarch64)
+* Debian 10 (including ARM images for Debian 10 which work (and tested) for RaspberryPI (model 2,3))
+* Raspbian 10 and 11 for RaspberryPI (arm and aarch64 images)
+* Ubuntu 20, 22, 23 (arm and aarch64 images)
 
 Use the below url for installation
 
@@ -75,4 +75,4 @@ Use the below url for installation
 
 # Support
 
-Please do not email Gordon if you have issues, he will not be able to help.
+Please do not email Gordon if you have issues, he will not be able to help. Feel free to create an [issue](https://github.com/mbhangui/wiringPi/issues/new/choose).
