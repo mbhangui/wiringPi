@@ -7,3 +7,6 @@ Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
 04. added repository for debian/rpm builds on open build service
 05. Bumped Release to 3.0 and auto-generate version.h in configure script
 06. devLib/lcd.[c,h]: added lcdFree()
+- 20/06/2023
+07. wiringPi/wiringPi.c: reverted code to original indentation style. Replaced
+    tabs with white space
