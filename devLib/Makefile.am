@@ -12,7 +12,9 @@ includedir=@prefix@/include/wiringPiDev
 
 libwiringPiDev_LTLIBRARIES=libwiringPiDev.la
 libwiringPiDev_la_SOURCES=$(COMMONSOURCES) 
-libwiringPiDev_la_LDFLAGS = -version-info @DEVLIBVER@ -pie
+libwiringPiDev_la_DEPENDENCIES = ../wiringPi/libwiringPi.la
+libwiringPiDev_la_LDFLAGS = -version-info @DEVLIBVER@ -pie -L../wiringPi
+libwiringPiDev_la_LIBADD = -lwiringPi
 libwiringPiDev_la_CXXFLAGS = -fPIE
 libwiringPiDevdir=@libdir@
 

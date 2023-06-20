@@ -5,7 +5,7 @@ pkgconfigdir=@pkgconfigdir@
 pkgconfig_DATA = libwiringPi.pc libwiringPiDev.pc
 noinst_DATA = wiringpi.spec
 
-SUBDIRS=devLib wiringPi gpio
+SUBDIRS=wiringPi devLib gpio
 
 edit = sed \
 	-e 's}@PACKAGE\@}$(PACKAGE)}g' \

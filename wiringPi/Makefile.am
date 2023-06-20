@@ -21,6 +21,7 @@ includedir=@prefix@/include/wiringPi
 libwiringPi_LTLIBRARIES=libwiringPi.la
 libwiringPi_la_SOURCES=$(COMMONSOURCES) 
 libwiringPi_la_LDFLAGS = -version-info @DEVLIBVER@ -pie
+libwiringPi_la_LIBADD = -lpthread -lrt -lm -lcrypt
 libwiringPi_la_CXXFLAGS = -fPIE
 libwiringPidir=@libdir@
 
