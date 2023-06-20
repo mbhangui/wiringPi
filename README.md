@@ -5,7 +5,12 @@
 This is an unofficial fork of another unofficial fork [wiringPi](https://github.com/WiringPi/WiringPi) of the original [wiringPi](http://wiringpi.com/).
 
   * The last "official" source release can be found at the [`final_source_2.50`](https://github.com/WiringPi/WiringPi/tree/final_official_2.50) tag.
-  * Debian/Ubuntu builds of this fork is available using [Open Build Service](https://software.opensuse.org//download.html?project=home%3Ambhangui%3Araspi&package=wiringPi)
+  * The last "unofficial" release is more than a year old [Version 2.61-1](https://github.com/WiringPi/WiringPi/releases/tag/2.61-1)
+  * Development of the "official" version ended as per this [post](https://web.archive.org/web/20220405225008/http://wiringpi.com/wiringpi-deprecated/)
+  * I have updated this fork with few of the pull requests submitted to the [unofficial fork](https://github.com/WiringPi/WiringPi). I know C programming and I know how to created RPM, Debian and archlinux packages. But I have zero knowledge of hardware side of things and how wiringpi really works. So I welcome contributions from knowledgeable folks. My contribution would be to have the binary builds updated and synced with the source code.
+  * Taking into account the points above, I have made this fork to support my lcdDaemon package which uses wiringPi. lcdDaemon is a daemon that runs continuously on a Raspberry PI and any user/program on the network can print to a 16x2, 16x4 connected LCD using Hitachi HD44780 driver, using the pilcd command. The lcdDaemon package will be released soon. I use the LCD to display songs being played on my Raspberry Pi. Watch this space for updates.
+  * Debian/Ubuntu builds of this fork is available using [Open Build Service](https://software.opensuse.org//download.html?project=home%3Ambhangui%3Araspi&package=wiringpi)
+  * Last but not the least, a big Thank You to Gordon for writing wiringPi. This was the thing that got me hooked to Raspberry Pi.
 
 # Installation
 
@@ -63,7 +68,7 @@ drwxr-xr-x 24 pi pi 4096 Jun 19 18:24 ..
 
 ## Prebuilt Binaries
 
-[![wiringPi](https://build.opensuse.org/projects/home:mbhangui:raspi/packages/wiringPi/badge.svg?type=percent)](https://build.opensuse.org/package/show/home:mbhangui:raspi/wiringPi)
+[![build result](https://build.opensuse.org/projects/home:mbhangui:raspi/packages/wiringpi/badge.svg?type=default)](https://build.opensuse.org/package/show/home:mbhangui:raspi/wiringpi)
 
 Prebuilt binaries using openSUSE Build Service are available for wiringPi for
 
@@ -73,7 +78,7 @@ Prebuilt binaries using openSUSE Build Service are available for wiringPi for
 
 Use the below url for installation
 
-[download](https://software.opensuse.org//download.html?project=home%3Ambhangui%3Araspi&package=wiringPi)
+[download](https://software.opensuse.org//download.html?project=home%3Ambhangui%3Araspi&package=wiringpi)
 
 # Support
 
