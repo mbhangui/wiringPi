@@ -53,10 +53,10 @@ binary-indep: build install
 	dh_testdir
 	dh_testroot
 	find $(DESTDIR)$(mandir) -name '*'.? -type f -exec gzip -q {} \;
-	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringPi.install
-	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringPiDev.install
-	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringPi-dev.install
-	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringPiDev-dev.install
+	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringpi.install
+	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringpidev.install
+	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringpi-dev.install
+	sed -i -e 's,@libd\@,$(libd),g' debian/libwiringpidev-dev.install
 	dh_install --sourcedir=$(DESTDIR) -pwiringpi
 	dh_install --sourcedir=$(DESTDIR) -plibwiringpi
 	dh_install --sourcedir=$(DESTDIR) -plibwiringpi-dev

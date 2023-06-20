@@ -26,19 +26,19 @@ wiringpi.dsc: wiringpi.dsc.in Makefile ../conf-version ../conf-release ../conf-e
 clean:
 	/bin/rm -f changelog control copyright wiringpi.dsc
 
-debian.tar.gz: changelog compat control copyright libwiringPiDev-dev.dirs \
-libwiringPiDev-dev.docs libwiringPiDev-dev.install libwiringPi-dev.dirs \
-libwiringPiDev.dirs libwiringPi-dev.docs libwiringPiDev.docs \
-libwiringPi-dev.install libwiringPiDev.install libwiringPi.dirs \
-libwiringPi.docs libwiringPi.install README source/format \
-WiringPi.install rules
+debian.tar.gz: changelog compat control copyright libwiringpidev-dev.dirs \
+libwiringpidev-dev.docs libwiringpidev-dev.install libwiringpi-dev.dirs \
+libwiringpidev.dirs libwiringpi-dev.docs libwiringpidev.docs \
+libwiringpi-dev.install libwiringpidev.install libwiringpi.dirs \
+libwiringpi.docs libwiringpi.install README source/format \
+wiringpi.install rules
 	cd .. && tar cf - debian/changelog debian/compat debian/control \
-		debian/copyright debian/libwiringPiDev-dev.dirs \
-		debian/libwiringPiDev-dev.docs debian/libwiringPiDev-dev.install \
-		debian/libwiringPi-dev.dirs debian/libwiringPiDev.dirs \
-		debian/libwiringPi-dev.docs debian/libwiringPiDev.docs \
-		debian/libwiringPi-dev.install debian/libwiringPiDev.install \
-		debian/libwiringPi.dirs debian/libwiringPi.docs debian/libwiringPi.install \
+		debian/copyright debian/libwiringpidev-dev.dirs \
+		debian/libwiringpidev-dev.docs debian/libwiringpidev-dev.install \
+		debian/libwiringpi-dev.dirs debian/libwiringpidev.dirs \
+		debian/libwiringpi-dev.docs debian/libwiringpidev.docs \
+		debian/libwiringpi-dev.install debian/libwiringpidev.install \
+		debian/libwiringpi.dirs debian/libwiringpi.docs debian/libwiringpi.install \
 		debian/README debian/source/format debian/rules \
-		debian/WiringPi.install | gzip -c >debian/$@
+		debian/wiringpi.install | gzip -c >debian/$@
 
