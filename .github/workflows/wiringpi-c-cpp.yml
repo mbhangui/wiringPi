@@ -8,6 +8,8 @@ on:
       - '!**/debian/*'
       - '!**/wiringpi.spec.in'
       - '!**/obs/*'
+      - '!**/pins/*'
+      - '!**/examples/*'
       - '!**/doc/*'
       - '!**.md'
   workflow_dispatch:
