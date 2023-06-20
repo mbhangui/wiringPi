@@ -31,7 +31,7 @@ libwiringpidev-dev.docs libwiringpidev-dev.install libwiringpi-dev.dirs \
 libwiringpidev.dirs libwiringpi-dev.docs libwiringpidev.docs \
 libwiringpi-dev.install libwiringpidev.install libwiringpi.dirs \
 libwiringpi.docs libwiringpi.install README source/format \
-wiringpi.install rules
+wiringpi.install rules postinst postrm
 	cd .. && tar cf - debian/changelog debian/compat debian/control \
 		debian/copyright debian/libwiringpidev-dev.dirs \
 		debian/libwiringpidev-dev.docs debian/libwiringpidev-dev.install \
@@ -40,5 +40,5 @@ wiringpi.install rules
 		debian/libwiringpi-dev.install debian/libwiringpidev.install \
 		debian/libwiringpi.dirs debian/libwiringpi.docs debian/libwiringpi.install \
 		debian/README debian/source/format debian/rules \
-		debian/wiringpi.install | gzip -c >debian/$@
+		debian/wiringpi.install debian/postinst debian/postrm | gzip -c >debian/$@
 
