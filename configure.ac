@@ -18,7 +18,7 @@ PKG_PROG_PKG_CONFIG
 PKG_INSTALLDIR
 
 # Checks for header files.
-AC_CHECK_HEADERS([arpa/inet.h fcntl.h malloc.h netdb.h netinet/in.h stdint.h sys/ioctl.h sys/socket.h sys/time.h syslog.h termios.h unistd.h])
+dnl AC_CHECK_HEADERS([arpa/inet.h fcntl.h malloc.h netdb.h netinet/in.h stdint.h sys/ioctl.h sys/socket.h sys/time.h syslog.h termios.h unistd.h])
 
 if test x$prefix = xNONE
 then
