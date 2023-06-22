@@ -56,7 +56,7 @@ Description: The wiringpi libraries, headers and gpio command
 Package: libwiringpidev-dev
 Section: libdevel
 Architecture: any
-Depends: libwiringpi (= ${binary:Version}), ${misc:Depends}
+Depends: libwiringpidev (= ${binary:Version}), ${misc:Depends}
 Description: The devLib is a set of library routines implemented using
  wiringpi to give you easy access to some popular peripherals. Devices
  supported include character LCD displays (based on the Hitachi HD44780U
