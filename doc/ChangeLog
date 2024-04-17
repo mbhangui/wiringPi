@@ -9,4 +9,7 @@ Release @version@-@release@ Start 24/04/2023 End XX/XX/XXXX
 06. devLib/lcd.[c,h]: added lcdFree()
 - 20/06/2023
 07. wiringPi/wiringPi.c: reverted code to original indentation style. Replaced
+- 17/04/2024
+08. fixed chown command in postinst
+09. lcd.c: added lcdScrollLeft and lcdScrollRight functions
     tabs with white space

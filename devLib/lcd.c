@@ -39,14 +39,16 @@
 
 // HD44780U Commands
 
-#define	LCD_CLEAR	0x01
-#define	LCD_HOME	0x02
-#define	LCD_ENTRY	0x04
-#define	LCD_CTRL	0x08
-#define	LCD_CDSHIFT	0x10
-#define	LCD_FUNC	0x20
-#define	LCD_CGRAM	0x40
-#define	LCD_DGRAM	0x80
+#define LCD_CLEAR     0x01
+#define LCD_HOME      0x02
+#define LCD_ENTRY     0x04
+#define LCD_CTRL      0x08
+#define LCD_CDSHIFT   0x10
+#define LCD_FUNC      0x20
+#define LCD_CGRAM     0x40
+#define LCD_DGRAM     0x80
+#define LCD_SCROLL_L  0x18
+#define LCD_SCROLL_R  0x1C
 
 // Bits in the entry register
 
@@ -197,6 +199,24 @@ void lcdClear (const int fd)
 
   putCommand (lcd, LCD_CLEAR) ;
   putCommand (lcd, LCD_HOME) ;
+  lcd->cx = lcd->cy = 0 ;
+  delay (5) ;
+}
+
+void lcdScrollLeft (const int fd)
+{
+  struct lcdDataStruct *lcd = lcds [fd] ;
+
+  putCommand (lcd, LCD_SCROLL_L) ;
+  lcd->cx = lcd->cy = 0 ;
+  delay (5) ;
+}
+
+void lcdScrollRight (const int fd)
+{
+  struct lcdDataStruct *lcd = lcds [fd] ;
+
+  putCommand (lcd, LCD_SCROLL_R) ;
   lcd->cx = lcd->cy = 0 ;
   delay (5) ;
 }
